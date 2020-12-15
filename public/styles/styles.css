@@ -175,3 +175,19 @@ button {
     .no-js h1 {
         color: #f8f8f8;
     }
+
+    /* Status */
+    .badge {
+        padding: 4px 8px;
+        color: white; 
+        border-radius: 5px;
+        border: 1px solid #e5e5e5;
+    }
+    
+    .badge-online {
+        background: #0DD800;
+    }
+    
+    .badge-offline {
+        background: #FF2E00;
+    }

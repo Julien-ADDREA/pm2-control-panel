@@ -1,6 +1,7 @@
 // Modules
 var express = require('express');
 var app = express();
+const basicAuth = require('express-basic-auth')
 var http = require('http');
 var bodyParser = require('body-parser');
 
@@ -13,6 +14,16 @@ console.log("Server running on http://localhost:" + port);
 
 // Require and configure socket.io
 var io = require('socket.io')(server);
+
+// Require auth
+app.use(basicAuth({
+    users: {
+        'admin': 'toor',
+        'adam': 'password1234',
+        'eve': 'asdfghjkl',
+    },
+    challenge: true,
+}));
 
 // Parse application/json
 app.use(bodyParser.json());
