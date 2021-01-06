@@ -5,19 +5,22 @@ To run this this project, you must have Node.js installed, along with npm, the N
 
 Clone the project:
 
-`git clone https://github.com/JacFearsome/pm2-control-panel.git`
+`git clone https://github.com/Julien-ADDREA/pm2-control-panel`
 
 Install the node module dependencies:
 
 `cd pm2-control-panel && npm install`
 
+Copy your ssl files into ssl directory if you want use ssl:
+
+`cp path/of/your/privatekey.pem ./ssl/privkey.pem`
+
+`cp path/of/your/certificate.pem ./ssl/cert.pem`
+
 Run the app:
 
 `sudo node server.js`
 
-And finally, go to http://localhost:8282/ in your web browser.
+And finally, go to https://localhost:8282/ in your web browser.
 
 I would recommend only running this within a local network, as to prevent the entire internet from having the ability to manage your PM2 instances.
-
-Screenshot:
-![alt text](https://www.jesserussell.net/wp-content/uploads/2017/11/pm2.png "PM2 Control Panel")

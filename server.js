@@ -3,14 +3,30 @@ var express = require('express');
 var app = express();
 const basicAuth = require('express-basic-auth')
 var http = require('http');
+var https = require('https');
 var bodyParser = require('body-parser');
+
+// Use SSL or not
+var ssl = false;
 
 // Set server port
 var port = process.env.PORT || 8282;
 
+// Set server options
+if (ssl) {
+    var options = {
+        key: fs.readFileSync('./ssl/privkey.pem'),
+        cert: fs.readFileSync('./ssl/cert.pem'),
+    };
+}
+
 // Create server
-var server = http.createServer(app).listen(port);
-console.log("Server running on http://localhost:" + port);
+if (ssl) {
+    var server = https.createServer(options, app).listen(port);
+} else {
+    var server = http.createServer(app).listen(port);
+}
+console.log("Server running on " + ((ssl) ? "https" : "http") + "://0.0.0.0:" + port);
 
 // Require and configure socket.io
 var io = require('socket.io')(server);
@@ -36,7 +52,6 @@ app.use(express.static(__dirname + '/public'));
 
 // Set pug as view engine
 app.set('view engine', 'pug');
-//app.set('views', __dirname + '/public/views');
 
 // Routes
 require('./app/routes')(app);
