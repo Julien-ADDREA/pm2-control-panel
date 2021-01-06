@@ -4,6 +4,7 @@ var app = express();
 const basicAuth = require('express-basic-auth')
 var http = require('http');
 var https = require('https');
+var fs = require('fs');
 var bodyParser = require('body-parser');
 
 // Use SSL or not
